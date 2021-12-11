@@ -3,5 +3,5 @@ steps:
 - name: 'docker/compose:1.25.1'
   args: ['up', '-d']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['tag', 'app:latest', 'europe-west1-docker.pkg.dev/praxis-water-334811/registry/$REPO_NAME:$COMMIT_SHA']
+  args: ['build', '-t', 'europe-west1-docker.pkg.dev/praxis-water-334811/registry/$REPO_NAME:$COMMIT_SHA', '.']
 images: ['europe-west1-docker.pkg.dev/praxis-water-334811/registry/$REPO_NAME:$COMMIT_SHA']
