@@ -1,5 +1,5 @@
 # pull official base image
-FROM python:3.10-alpine
+FROM python:3.10-slim
 
 # set work directory
 # WORKDIR /src
@@ -26,7 +26,7 @@ ENV PYTHONUNBUFFERED 1
 
 RUN apt-get update -y \
     && apt-get install -y gcc libpq-dev \
-    && python -m pip install --upgrade pip \
+#    && python -m pip install --upgrade pip \
     && pip3 install -r requirements.txt --no-cache-dir
 
 # copy project
