@@ -17,7 +17,8 @@ steps:
       - "sh"
       - "-c"
       - |
-        pip3 install -r requirements.txt \
+        pip3 install --upgrade \
+        && pip3 install -r requirements.txt \
         && pytest test -s --cov=. --cov-fail-under 100 --log-cli-level info
     env:
       - "PROJECT_ID=$PROJECT_ID"

@@ -26,6 +26,7 @@ ENV PYTHONUNBUFFERED 1
 
 RUN apt-get update -y \
     && apt-get install -y gcc libpq-dev \
+    && pip3 install --upgrade \
     && pip3 install -r requirements.txt --no-cache-dir
 
 # copy project
