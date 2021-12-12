@@ -1,10 +1,16 @@
+import os
+
 from fastapi import FastAPI, HTTPException
 from starlette.responses import Response
 
 from app.db.models import UserAnswer
 from app.api import api
 
-app = FastAPI()
+os.environ["TZ"] = "UTC"
+title_detail = os.getenv("PROJECT_ID", "Local")
+version = os.getenv("SHORT_SHA", "local")
+
+app = FastAPI(title=f"CloudRun FastAPI: {title_detail}", version=version)
 
 
 @app.get("/")
