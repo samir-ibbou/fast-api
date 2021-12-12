@@ -1,7 +1,7 @@
 import os
 
 from fastapi import FastAPI, HTTPException
-from starlette.responses import Response
+# from starlette.responses import Response
 
 from app.db.models import UserAnswer
 from app.api import api
@@ -24,7 +24,7 @@ def read_user():
 
 
 @app.get("/question/{position}", status_code=200)
-def read_questions(position: int, response: Response):
+def read_questions(position: int):
     question = api.read_questions(position)
 
     if not question:
