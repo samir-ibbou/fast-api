@@ -51,6 +51,6 @@ steps:
         "--allow-unauthenticated",
         "--revision-suffix=$SHORT_SHA",
         "--set-env-vars=PROJECT_ID=$PROJECT_ID,SHORT_SHA=$SHORT_SHA",
-        "--set-cloudsql-instances=$PROJECT_ID:europe-west1:runfastapi",
+#        "--set-cloudsql-instances=$PROJECT_ID:europe-west1:runfastapi",
         "--service-account=298558544785-compute@developer.gserviceaccount.com",
       ]
