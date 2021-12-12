@@ -1,7 +1,8 @@
 import os
 
-from fastapi import FastAPI, HTTPException
-# from starlette.responses import Response
+from fastapi import FastAPI, HTTPException, Depends
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from starlette import status
 
 from app.db.models import UserAnswer
 from app.api import api
@@ -10,12 +11,26 @@ os.environ["TZ"] = "UTC"
 title_detail = os.getenv("PROJECT_ID", "Local")
 version = os.getenv("SHORT_SHA", "local")
 
+CREDENTIALS_EXCEPTION = HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                                      detail="Invalid credentials.",
+                                      headers={"WWW-Authenticate": "Bearer"})
+
 app = FastAPI(title=f"CloudRun FastAPI: {title_detail}", version=version)
 
 
 @app.get("/")
 def root():
     return {"message": "Fast API in Python"}
+
+
+@app.post("/token")
+async def login(form_data: OAuth2PasswordRequestForm = Depends()):
+    if not form_data.username:
+        raise HTTPException(status_code=400, detail="Incorrect username or password")
+    if not form_data.password:
+        raise HTTPException(status_code=400, detail="Incorrect username or password")
+
+    return {"access_token": form_data.username, "token_type": "bearer"}
 
 
 @app.get("/user")
