@@ -11,17 +11,17 @@ steps:
 ## Push the new image to the registry.
 #images: ['gcr.io/$PROJECT_ID/$REPO_NAME:$COMMIT_SHA']
 
-  - name: python:3.10
-    id: "python_install_config_test"
-    args:
-      - "sh"
-      - "-c"
-      - |
-        python -m pip install --upgrade pip \
-        && pip3 install -r requirements.txt \
-#        && pytest test -s --cov=. --log-cli-level info
-    env:
-      - "PROJECT_ID=$PROJECT_ID"
+#  - name: python:3.10
+#    id: "python_install_config_test"
+#    args:
+#      - "sh"
+#      - "-c"
+#      - |
+#        python -m pip install --upgrade pip \
+#        && pip3 install -r requirements.txt \
+##        && pytest test -s --cov=. --log-cli-level info
+#    env:
+#      - "PROJECT_ID=$PROJECT_ID"
 
   - id: "docker_build"
     name: "gcr.io/cloud-builders/docker"
