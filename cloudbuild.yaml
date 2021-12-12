@@ -19,7 +19,7 @@ steps:
       - |
         python -m pip install --upgrade pip \
         && pip3 install -r requirements.txt \
-        && pytest test -s --cov=. --cov-fail-under 100 --log-cli-level info
+        && pytest test -s --cov=. --log-cli-level info
     env:
       - "PROJECT_ID=$PROJECT_ID"
 
